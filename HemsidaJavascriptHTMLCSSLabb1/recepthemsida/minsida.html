@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Min sida</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<section class="grid-container">
+    <header>
+        <h1>Gröna recept</h1>
+    </header>
+    <nav>
+        <a href="index.html">Start</a>
+        <a href="recept.html">Recept</a>
+        <a href="dessert.html">Desserter</a>
+        <a href="info.html">växtbaserad kost</a>
+
+        <a href="minsida.html">Min sida</a>
+    </nav>
+    <main>
+        <article>
+            <h3>Min sida</h3>
+            <p>Om du loggar in så kan du spara dina favoritrecept, få anpassade veckomenyer och
+                inköpslistor och mycket mer
+            </p>
+        </article>
+        <article>
+            <h4>Inköpslista</h4>
+            <p>Här är de ingredienser du har lagt till att du behöver handla:</p>
+                <ul>
+                    <li id="result"></li>
+                </ul>
+            <p></p>
+            <script src="js/get.js"></script>
+        </article>
+        <article>
+            <h4 id="output"></h4>
+            <h4>Logga in: </h4>
+            <form id="formReg" method="post" action="">
+                <label for="username">Användarnamn: </label>
+                <input type="text" id="username" /><div id="feedback"></div>
+
+                <label for="password">Lösenord: </label>
+                <input type="password" id="password">
+
+                <p><input type="submit" value="logga in"></p>
+
+            </form>
+            <script src="js/blimedlem.js"></script>
+        </article>
+        <article>
+        </article>
+        <article><p></p></article>
+
+    </main>
+
+    <footer></footer>
+</section>
+
+
+</body>
+</html>

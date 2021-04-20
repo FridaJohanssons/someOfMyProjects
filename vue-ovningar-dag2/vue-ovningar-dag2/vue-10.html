@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-10</title>
+</head>
+<body>
+<div id ="app">
+    <h1 v-bind:style="styleObject">David Bowies Ziggy Stardust and the spiders from Mars</h1>
+    <img v-bind:src="image" alt="">
+    <p><button v-on:click="image = 'img/davidbowie_theriseandfallofzigg_c9aw.jpg'">Album baksida</button></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data: {
+            styleObject: {
+                color: 'red',
+                fontSize: '30px',
+                backgroundColor: 'yellow'
+            },
+            image: 'img/220px-ZiggyStardust.jpg',
+            image2: 'img/davidbowie_theriseandfallofzigg_c9aw.jpg'
+        }
+    })
+</script>
+</body>
+</html>

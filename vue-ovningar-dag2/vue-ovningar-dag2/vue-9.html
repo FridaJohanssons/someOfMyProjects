@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-9</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div id ="app">
+    <h1 v-bind:style="styleObject">David Bowies Ziggy Stardust and the spiders from Mars</h1>
+    <img v-bind:src="image" alt="">
+    <img v-bind:src="image2" alt="">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data: {
+            styleObject: {
+                color: 'red',
+                fontSize: '30px',
+                backgroundColor: 'yellow'
+            },
+            image: 'img/220px-ZiggyStardust.jpg',
+            image2: 'img/davidbowie_theriseandfallofzigg_c9aw.jpg'
+        }
+    })
+</script>
+</body>
+</html>

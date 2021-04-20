@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-16</title>
+</head>
+<body>
+<div id="app">
+    <game-controller></game-controller>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    /* Version 1: (ovningar-dag1 vue-7)
+Datorn slumpar fram ett nummer som användarens gissning jämförs med
+Om numret är för lågt får man ett meddelande "Ditt nummer är för lågt!!
+Om numret är för högt får man ett meddelande "Ditt nummer är för högt!"
+Gissar man rätt får man meddelandet "Du har gissat rätt!"
+
+Vi ska använda slump med Math.random
+Vi ska visa numret användaren har gissat
+Vi ska visa meddelande beroende på "resultatet" på gissningen
+
+Version 2: (vue-11)
+Vi vill ha en knapp för att göra ett nytt spel när man har vunnit
+Vi vill styra vad användaren ser beroende på om spelet pågår eller är avslutat
+
+Version 3: (vue-16) Refaktorera till en Component
+*/
+    Vue.component('game-controller', {
+        data: function (){
+            return{
+                yourNumber:'',
+                message:'Guess a number',
+                isFinishedGame:false,
+                randomNumber: Math.floor(Math.random()*10+1)
+            }
+        },
+        template: `<div>
+        <button v-if="isFinishedGame" v-on:click="newGame">New Game</button>
+                <p>Ditt nr: {{yourNumber}}</p>
+        <p>{{message}}</p>
+        <p v-if="!isFinishedGame">
+          <input v-model="yourNumber">
+          <button v-on:click="guessNumber">Gissa ett nummer</button>
+        </p>
+        </div>`,
+
+        methods: {
+            guessNumber: function (){
+                console.log('Rätt nummer' + this.randomNumber)
+                if(this.yourNumber < this.randomNumber){
+                    this.message = 'Ditt nummer är för lågt!';
+                }
+                else if(this.yourNumber > this.randomNumber){
+                    this.message = 'Ditt nummer är för högt!';
+                }
+                else{
+                    this.message = 'Du har gissat rätt!';
+                    this.yourNumber = '';
+                    this.isFinishedGame = true;
+                    this.randomNumber = Math.floor(Math.random()*10+1);
+                }
+            },
+            newGame: function (){
+                this.isFinishedGame = false;
+                this.message = 'Gissa ett nummer';
+            }
+        }
+    })
+
+    var app = new Vue({
+        el: '#app',
+    })
+</script>
+</body>
+</html>

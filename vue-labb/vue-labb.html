@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-labb</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div id="weekly-menu-list">
+    <header class="rounded">
+        <h1>
+            Gröna recept
+            <img src="img/ScaleBrandingLogoMockupSep2020Final-86-1024x1024.jpg" class="start_img"></h1>
+
+    </header>
+
+    <main class="rounded">
+    <form v-on:submit.prevent="addNewFood">
+        <label for="new-food">Lägg till maträtt i din veckomeny</label>
+
+        <input
+                v-model="newFoodText"
+                id="new-food"
+                placeholder="Tex Curry med ris"
+        >
+        <input
+                v-model="newFoodDay"
+                id="new-menu-day"
+                placeholder="Tex Måndag"
+        >
+        <button>Add</button>
+    </form>
+
+    <ul>
+        <li
+                is="food-item"
+                v-if="food.prioColor == 'black'"
+                v-for="(food,index) in foods"
+                v-bind:style="{color: food.prioColor}"
+                v-bind:key="food.id"
+                v-bind:title="food.title"
+                v-bind:foods="food.day + ':'+ ' ' + food.title"
+                v-on:remove="foods.splice(index,1)"
+                v-on:prio="food.prio = 1; food.prioColor = 'red'"
+
+        ></li>
+        <li
+                is="food-item"
+                v-else
+
+                v-bind:style="{color: food.prioColor}"
+                v-bind:key="food.id"
+                v-bind:title="food.title"
+                v-bind:foods="food.day + ':'+ ' ' + food.title"
+                v-on:remove="foods.splice(index,1)"
+                v-on:prio="food.prio = 0; food.prioColor = 'black'"
+
+        ></li>
+
+    </ul>
+
+    <p>
+        <img src="img/Vegan-Protein.jpg"class="main_img">
+    </p>
+    </main>
+    <aside class="rounded">
+        <img src="img/676-6764065_default-profile-picture-transparent-hd-png-download.png" class="start_img">
+        <set-username></set-username>
+    </aside>
+    <footer class="rounded"><p>Test footer</p></footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    Vue.component('food-item',{
+        template: `
+    <li>
+       {{foods}}
+       {{prio}}
+
+       <button v-on:click="$emit('remove')" class="button" >Ta bort rätt</button>
+       <button v-on:click="$emit('prio')" class="button">Köp ingredienser!</button>
+    </li>
+    `,
+        props:['foods', 'prio']
+
+
+    })
+
+    Vue.component('set-username', {
+        data: function (){
+            return{
+                username: '',
+                message: 'Välj ett användarnamn till din sida',
+                usernameIsSet: false,
+            }
+        },
+
+        template: `<div>
+
+            <h2>{{username}}</h2>
+            <p>{{message}}</p>
+            <button v-if="usernameIsSet" v-on:click="newUsername">Välj nytt användarnamn</button>
+            <p v-if="!usernameIsSet">
+            <input v-model="username">
+            <button v-on:click="pickUsername">Välj ett användarnamn</button>
+            </p>
+            </div>`,
+
+        methods: {
+            pickUsername: function (){
+                if(this.username.length < 4){
+                    this.message = 'Ditt användarnamn är för kort!'
+                }
+                else if(this.username.length > 8){
+                    this.message = 'Ditt användarnamn är för långt!'
+                }
+                else {
+                    this.message=''
+
+                    this.usernameIsSet = true
+
+                }
+            },
+            newUsername: function (){
+                this.usernameIsSet = false
+                this.message = 'Välj ett användarnamn'
+            }
+
+        }
+
+    })
+
+    new Vue({
+        el: '#weekly-menu-list',
+        data: {
+            newFoodText: '',
+            newFoodDay:'',
+            foods: [
+                {
+                    id:1,
+                    title:'Nudelsoppa',
+                    day:'Måndag' ,
+                    prio: 0,
+                    prioColor: 'black'
+                },
+                {
+                    id:2,
+                    title: 'Chili Sin carne',
+                    day: 'Tisdag',
+                    prio: 0,
+                    prioColor: 'black'
+                },
+                {
+                    id:3,
+                    title: 'Pita med kikärtor',
+                    day: 'Onsdag',
+                    prio: 0,
+                    prioColor: 'black'
+                }
+            ],
+            nextFoodId: 4
+        },
+        methods:{
+            addNewFood: function (){
+                this.foods.push({
+                    id: this.nextFoodId++,
+                    title: this.newFoodText,
+                    day: this.newFoodDay,
+                    prio: 0,
+                    prioColor: 'black'
+                })
+                this.newFoodText = ''
+                this.newFoodDay=''
+            }
+        },
+
+    })
+
+</script>
+
+</body>
+</html>

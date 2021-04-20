@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-11</title>
+</head>
+<body>
+<div id="app">
+    <button v-if="isFinishedGame" v-on:click="newGame">New Game</button>
+    <p>Ditt nr: {{yourNumber}}</p>
+    <p>{{message}}</p>
+    <p v-if="!isFinishedGame">
+        <input v-model="yourNumber">
+        <button v-on:click="guessNumber">Gissa ett nummer</button>
+    </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Gissa ett nummer',
+            randomNumber: Math.floor(Math.random()*10+1),
+            yourNumber: '',
+            isFinishedGame: false
+        },
+
+        methods: {
+            guessNumber: function (){
+                console.log('Rätt nummer' + this.randomNumber)
+                if(this.yourNumber < this.randomNumber){
+                    this.message = 'Ditt nummer är för lågt!';
+                }
+                else if(this.yourNumber > this.randomNumber){
+                    this.message = 'Ditt nummer är för högt!';
+                }
+                else{
+                    this.message = 'Du har gissat rätt!';
+                    this.yourNumber = '';
+                    this.isFinishedGame = true;
+                    this.randomNumber = Math.floor(Math.random()*10+1);
+                }
+            },
+            newGame: function (){
+                this.isFinishedGame = false;
+                this.message = 'Gissa ett nummer';
+            }
+        }
+    })
+</script>
+</body>
+</html>

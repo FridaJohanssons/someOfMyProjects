@@ -1,0 +1,40 @@
+{
+  "recept": [
+    {
+      "receptTitle": "Enkel Ceasarsallad",
+      "receptContent": "romansallad, tomat, Gurka, rödlök, tofu, sojasås, krutonger, majonäs, näringsjäst, citron",
+      "receptDay": "Måndag: "
+    },
+    {
+      "receptTitle": "Pita med rostade kikärtor",
+      "receptContent": "kikärtor, chillipulver, vita bönor, avocado, spenat, koriander, lime, vitlök, pitabröd, tomat, yoghurt, rödlök",
+      "receptDay": "Tisdag: "
+    },
+    {
+      "receptTitle" :"Kladdkaka",
+      "receptContent": "socker, kikärtsspad, kakao, vaniljsocker, vetemjöl, margarin",
+      "receptDay": "Onsdag: "
+    },
+    {
+      "receptTitle" :"Gröncurry gryta",
+      "receptContent": "Gröncurry pasta, kokosmjölk, tofu, morot, spenat, blomkol, zucchini, vitlök, ris eller risnudlar",
+      "receptDay": "Torsdag: "
+    },
+    {
+      "receptTitle" :"Snabb tortillapizza",
+      "receptContent": "torillabröd, salsasås, champinjoner, paprika, lök, tomat, ost",
+      "receptDay": "Fredag: "
+    },
+    {
+      "receptTitle" :"Grekiska biffar med tsatsiki",
+      "receptContent": "Sojafärs, lök, potatis, isbergssallad, paprika, salladslök, yoghurt, vitlök, gurka",
+      "receptDay": "Lördag: "
+    },
+    {
+      "receptTitle" :"Osso Buco",
+      "receptContent": "ajskds,asda,sd,asd,asd,asd,asd,as,d",
+      "receptDay": "Söndag: "
+    }
+
+  ]
+}

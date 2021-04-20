@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testtilllabb</title>
+</head>
+<body>
+<div id="app">
+    <set-username></set-username>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    Vue.component('set-username', {
+        data: function (){
+            return{
+                username: '',
+                message: 'Välj ett användarnamn',
+                usernameIsSet: false,
+            }
+        },
+
+        template: `<div>
+            <button v-if="usernameIsSet" v-on:click="newUsername">Välj nytt användarnamn</button>
+                    <p>Användarnamn: {{username}}</p>
+            <p>{{message}}</p>
+            <p v-if="!usernameIsSet">
+            <input v-model="username">
+            <button v-on:click="pickUsername">Välj ett användarnamn</button>
+            </p>
+            </div>`,
+
+        methods: {
+            pickUsername: function (){
+                if(this.username.length < 4){
+                    this.message = 'Ditt användarnamn är för kort!'
+                }
+                else if(this.username.length > 8){
+                    this.message = 'Ditt användarnamn är för långt!'
+                }
+                else {
+                    this.message=''
+
+                    this.usernameIsSet = true
+
+                }
+            },
+            newUsername: function (){
+                this.usernameIsSet = false
+                this.message = 'Välj ett användarnamn'
+            }
+
+        }
+
+    })
+    var app = new Vue({
+        el: '#app',
+    })
+
+
+
+
+
+
+</script>
+</body>
+</html>
